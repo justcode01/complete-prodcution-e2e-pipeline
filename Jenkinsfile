@@ -8,7 +8,7 @@ pipeline{
         choice(name: 'action', choices: 'create\ndelete', description: 'choose create/Destroy')
 
     }
-    
+
     stages{
 
         stage('Git Checkout'){
@@ -28,6 +28,15 @@ pipeline{
                     mvnTest()
                 }
                 
+            }
+        }
+
+        stage('Integration Testing'){
+        when { expression { params.action == 'create' }}
+            steps{
+                script{
+                    mvnIntegrationTest()
+                }
             }
         }
     }   
