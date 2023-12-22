@@ -7,6 +7,8 @@ pipeline{
 
         choice(name: 'action', choices: 'create\ndelete', description: 'choose create/Destroy')
 
+    }
+    
     stages{
 
         stage('Git Checkout'){
@@ -30,4 +32,4 @@ pipeline{
         }
     }   
 }
-}
+
