@@ -14,5 +14,15 @@ pipeline{
             )
             }
        }
+
+       stage('Unit test maven'){
+        when { expression { params.action == 'create' }}
+            steps{
+                script{
+                    mvnTest()
+                }
+                
+            }
+        }
     }   
 }
