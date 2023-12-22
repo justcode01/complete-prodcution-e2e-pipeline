@@ -39,6 +39,16 @@ pipeline{
                 }
             }
         }
+
+        stage('Static code Analysis; Sonarqube'){
+        when { expression { params.action == 'create' }}    
+            steps{
+                script{
+                    def SonarQubecredentialsId = 'sonar-server'
+                    staticCodeAnalysis(SonarQubecredentialsId)
+                }
+            }
+        }
     }   
 }
 
